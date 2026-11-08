@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>未送信</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="title" class="title">
+    <div class="title-card">
+      <p class="kicker">新米刑事</p>
+      <h1>未送信</h1>
+      <p>土曜の夜、鈴木太一が玄関の外で倒れているところから始まる。</p>
+      <ol class="howto">
+        <li>当夜の話を読み、「翌朝、現場へ」を押す。</li>
+        <li>玄関の見取りで、気になるところを触る。</li>
+        <li>人の話を読んだら、「この話をメモに残す」を押す。押すまで、調べたことにはならない。</li>
+        <li>行き詰まったら「ヒント」。告発は、署から出す。</li>
+      </ol>
+      <button type="button" id="start">事件に入る</button>
+      <label class="admin-toggle" for="admin-mode"><input type="checkbox" id="admin-mode">管理者モード</label>
+    </div>
+  </div>
+  <div id="app" class="app" hidden>
+    <header class="top">
+      <div>
+        <h1>未送信</h1>
+        <p id="phase">当夜</p>
+      </div>
+      <div class="actions">
+        <button type="button" id="go-desk">署</button>
+        <button type="button" id="go-scene">現場</button>
+        <button type="button" id="go-files">資料</button>
+        <button type="button" id="go-hint">ヒント</button>
+        <button type="button" id="go-charge">告発</button>
+        <button type="button" id="go-solution" hidden>答え</button>
+        <button type="button" id="go-reset">最初から</button>
+      </div>
+    </header>
+    <div id="banner" class="banner" hidden>
+      <p id="banner-text"></p>
+      <button type="button" id="banner-ok">わかった</button>
+    </div>
+    <div class="workspace">
+      <nav id="roster" class="roster" aria-label="話を聞ける人"></nav>
+      <main id="stage" class="stage"></main>
+      <aside id="notes" class="notes" aria-label="捜査メモ"></aside>
+    </div>
+  </div>
+  <div id="modal" class="modal" hidden></div>
+  <script src="js/story.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
