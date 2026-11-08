@@ -42,7 +42,7 @@ function load() {
     if (saved && saved.seen && saved.log) {
       if (!saved.ink) saved.ink = [];
       if (!saved.inks || typeof saved.inks !== "object") saved.inks = {};
-      saved.admin = !!saved.admin;
+      saved.admin = false;
       saved.banner = "";
       saved.queue = [];
       return saved;
@@ -1044,9 +1044,25 @@ function openHints() {
   document.getElementById("modal-actions").appendChild(actionButton("署へ戻る", closeModal));
 }
 
+var ADMIN_PASS = "pass";
+
+document.getElementById("admin-mode").addEventListener("change", function () {
+  var wrap = document.getElementById("admin-pass-wrap");
+  wrap.hidden = !this.checked;
+  document.getElementById("admin-note").hidden = true;
+  if (!this.checked) document.getElementById("admin-pass").value = "";
+});
+
 document.getElementById("start").addEventListener("click", function () {
+  var box = document.getElementById("admin-mode");
+  var note = document.getElementById("admin-note");
+  if (box.checked && document.getElementById("admin-pass").value !== ADMIN_PASS) {
+    note.hidden = false;
+    return;
+  }
+  note.hidden = true;
   state.started = true;
-  state.admin = !!document.getElementById("admin-mode").checked;
+  state.admin = box.checked;
   state.phase = "night";
   state.view = "night";
   save();
@@ -1078,6 +1094,10 @@ document.getElementById("go-reset").addEventListener("click", function () {
   if (!confirm("最初からやり直します。書いたメモも消えます。")) return;
   localStorage.removeItem(SAVE_KEY);
   state = fresh();
+  document.getElementById("admin-mode").checked = false;
+  document.getElementById("admin-pass").value = "";
+  document.getElementById("admin-pass-wrap").hidden = true;
+  document.getElementById("admin-note").hidden = true;
   closeModal();
   render();
 });

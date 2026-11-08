@@ -132,6 +132,35 @@ button:disabled {
   margin: 0;
 }
 
+.admin-pass {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin: 8px 0 0;
+  color: #6d6258;
+}
+
+.admin-pass[hidden] {
+  display: none;
+}
+
+.admin-pass input {
+  width: 140px;
+  min-height: 40px;
+  margin: 0;
+  padding: 6px 10px;
+  border: 1px solid #c8b8a4;
+  border-radius: 8px;
+  background: #fffdf8;
+  font: inherit;
+}
+
+.admin-note {
+  margin: 8px 0 0;
+  color: #9a3b32;
+}
+
 .app {
   height: 100dvh;
   display: grid;
